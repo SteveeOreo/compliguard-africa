@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import Gauge from './Gauge';
+import React, { useState } from "react";
+import Gauge from "./Gauge";
+import ComplianceHeatmap from "./ComplianceHeatmap";
 
 const DashboardContent = () => {
   const [readiness, setReadiness] = useState(68);
@@ -11,36 +12,53 @@ const DashboardContent = () => {
 
   return (
     <div>
-      <div className="flex justify-between items-center mb-4">
-        <div className="text-2xl font-bold">Compliance Posture - Your Organization</div>
-        <div className="flex items-center">
-          <input
-            type="text"
-            placeholder="Search"
-            className="border rounded py-2 px-4 mr-2"
-          />
-          <div className="rounded-full h-8 w-8 bg-gray-300"></div>
-        </div>
+      <div className="text-2xl font-bold mb-4">
+        Compliance Posture - Your Organization
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="bg-white p-4 rounded shadow flex justify-center items-center flex-col">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-4">
+        <div className="bg-white p-4 rounded shadow flex justify-center items-center flex-col lg:col-span-3">
+          {" "}
+          {/* Adjusted col-span-3 */}
           <Gauge value={readiness} />
           <div className="text-sm mt-2">{readiness}% Ready</div>
         </div>
-        <div className="bg-white p-4 rounded shadow">Risks: High / Medium / Low</div>
-        <div className="bg-white p-4 rounded shadow">Controls Implemented</div>
-        <div className="bg-white p-4 rounded shadow">Upcoming Tasks</div>
-        <div className="bg-white p-4 rounded shadow col-span-1 sm:col-span-2">Compliance Heatmap</div>
-        <div className="bg-white p-4 rounded shadow col-span-1 sm:col-span-2">Alerts</div>
+        <div className="bg-white p-4 rounded shadow lg:col-span-3">
+          <div className="font-bold mb-2">Risks</div>
+          <div>High: 10</div>
+          <div>Medium: 5</div>
+          <div>Low: 2</div>
+        </div>
+        <div className="bg-white p-4 rounded shadow lg:col-span-3">
+          <div className="font-bold mb-2">Controls Implemented</div>
+          <div>Total: 50</div>
+          <div>Effective: 45</div>
+          <div>Ineffective: 5</div>
+        </div>
+        <div className="bg-white p-4 rounded shadow lg:col-span-3">
+          <div className="font-bold mb-2">Upcoming Tasks</div>
+          <div>Review Policies</div>
+          <div>Update Controls</div>
+          <div>Conduct Audits</div>
+        </div>
+        <div className="bg-white p-4 rounded shadow col-span-1 sm:col-span-2 lg:col-span-9 h-[350px]">
+          <ComplianceHeatmap />
+        </div>
+        <div className="bg-white p-4 rounded shadow col-span-1 sm:col-span-2 lg:col-span-3 h-[350px]">
+          Alerts
+        </div>
       </div>
-      <div className="mt-4 flex flex-col sm:flex-row justify-around">
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-2 sm:mb-0">Upload Evidence</button>
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-2 sm:mb-0">Add Risk</button>
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Generate Report</button>
-      </div>
-      <div className="flex justify-center">
+      <div className="mt-6 flex flex-col sm:flex-row justify-around items-center gap-4">
+        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full sm:w-auto">
+          Upload Evidence
+        </button>
+        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full sm:w-auto">
+          Add Risk
+        </button>
+        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full sm:w-auto">
+          Generate Report
+        </button>
         <button
-          className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-4"
+          className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded w-full sm:w-auto"
           onClick={handleUpdateReadiness}
         >
           Update Readiness
