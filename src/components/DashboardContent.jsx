@@ -3,12 +3,7 @@ import Gauge from "./Gauge";
 import ComplianceHeatmap from "./ComplianceHeatmap";
 
 const DashboardContent = () => {
-  const [readiness, setReadiness] = useState(68);
-
-  const handleUpdateReadiness = () => {
-    const newValue = Math.floor(Math.random() * 101);
-    setReadiness(newValue);
-  };
+  const readiness = 68; // Static value
 
   return (
     <div>
@@ -56,12 +51,6 @@ const DashboardContent = () => {
         </button>
         <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full sm:w-auto">
           Generate Report
-        </button>
-        <button
-          className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded w-full sm:w-auto"
-          onClick={handleUpdateReadiness}
-        >
-          Update Readiness
         </button>
       </div>
     </div>
